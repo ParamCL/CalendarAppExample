@@ -25,8 +25,6 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 {
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-    private RecyclerView recyclerViewProgress;
-    private ProgressDayAdapter progressDayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,13 +33,6 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         setContentView(R.layout.activity_week_view);
         initWidgets();
         setWeekView();
-        recyclerViewProgress = findViewById(R.id.recyclerViewProgress);
-        recyclerViewProgress.setLayoutManager(new LinearLayoutManager(this));
-
-        List<Integer> progressList = generateProgressList();
-
-        progressDayAdapter = new ProgressDayAdapter(progressList);
-        recyclerViewProgress.setAdapter(progressDayAdapter);
     }
 
     private void initWidgets()
@@ -92,14 +83,4 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     }
 
 
-    private List<Integer> generateProgressList() {
-        List<Integer> progressList = new ArrayList<>();
-        // TODO: Add your logic to generate the progress values for each day
-        // For this example, let's use random progress values between 0 and 100
-        for (int i = 0; i < 7; i++) {
-            int progress = (int) (Math.random() * 100);
-            progressList.add(progress);
-        }
-        return progressList;
-    }
 }
