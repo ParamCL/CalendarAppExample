@@ -11,7 +11,7 @@
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:max="100"
         android:rotation="270"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:progress="0" />
 
