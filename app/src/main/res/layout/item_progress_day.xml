@@ -1,0 +1,28 @@
+<!-- item_progress_chart.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:max="100"
+        android:rotation="270"
+        android:layout_marginStart="10dp"
+        android:layout_gravity="center"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/dayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingTop="8dp"
+        android:text="Day"
+        android:textSize="12sp" />
+
+</LinearLayout>

@@ -21,28 +21,33 @@ import static codewithcal.au.calendarappexample.CalendarUtils.daysInMonthArray;
 import static codewithcal.au.calendarappexample.CalendarUtils.daysInWeekArray;
 import static codewithcal.au.calendarappexample.CalendarUtils.monthYearFromDate;
 
-public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
-{
+public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
+    private RecyclerView recyclerView;
+    private ProgressChartAdapter adapter;
+
+    private String[] daysOfWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+    private int[] progressValues = {80, 50, 70, 30, 90, 60, 40};
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week_view);
         initWidgets();
         setWeekView();
+        recyclerView = findViewById(R.id.recyclerViewProgress);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        adapter = new ProgressChartAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
-    private void initWidgets()
-    {
+    private void initWidgets() {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
     }
 
-    private void setWeekView()
-    {
+    private void setWeekView() {
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
 
@@ -53,16 +58,14 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     }
 
 
-    public void previousWeekAction(View view)
-    {
+    public void previousWeekAction(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
         }
         setWeekView();
     }
 
-    public void nextWeekAction(View view)
-    {
+    public void nextWeekAction(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
         }
@@ -70,15 +73,13 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     }
 
     @Override
-    public void onItemClick(int position, LocalDate date)
-    {
+    public void onItemClick(int position, LocalDate date) {
         CalendarUtils.selectedDate = date;
         setWeekView();
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
     }
 
